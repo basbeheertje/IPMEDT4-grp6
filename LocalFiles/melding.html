@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script src="js/jquery-latest.js"></script>
+		<script src="js/wormhole.js"></script>
+		<script>
+			var map;
+			function checkCon(){
+				jQuery("#loadertext").html("Connecting");
+				$("#loader").css("display", "block");
+				
+				var url = "http://ipmedt4.basbeheertje.nl/connection.php";
+	
+				$.getJSON(url + "?jsoncallback=?", function(data){
+					Succes = data.Succes;
+					$("#loader").css("display", "none");
+				});
+				t=setTimeout("checkCon()",5000);
+			}
+			window.addEventListener('load', function(e) {
+				if (navigator.onLine) {
+					 //alert('online');
+				} else {
+					window.location="offline.html";
+				}
+				//checkCon();
+			}, false);
+			window.addEventListener("offline", function(e) {
+				//APP is offline
+				window.location="offline.html";
+				}, false);
+			function checkCookie(){
+				if (localStorage.getItem("username") != null && localStorage.getItem("username") != "" && localStorage.getItem("name") != "undefined"){
+					//Gebruiker bestaat
+				}else{
+					//Gebruiker bestaat niet
+					window.location = "logon.html";
+				}
+			}
+			$(document).ready(function(){
+				//Haal gegevens van de server op
+				$.getJSON('http://ipmedt4.basbeheertje.nl/melding.php?id='+gup('id')+'&' + "jsoncallback=?", function(data) {
+					//Maak een map aan
+					var centerMap = new google.maps.LatLng(data.latitude, data.longitutde);
+					var optionMap = {
+						center: centerMap,
+						zoom: 16,
+						MapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+					map = new google.maps.Map(document.getElementById('melding-map'), optionMap);
+					
+					var positie = new google.maps.LatLng(data.latitude, data.longitutde);
+					var url = "melding.html?id="+data.id;
+					addMarker(positie, data.title, url);
+					
+					$('#title').append(data.title);
+					$('#date').append(data.date);
+					
+					//Haal JSON objecten op van de server			
+					
+					//Geef alle meldingen weer
+					for(var i=0;i<data.Meldingen.length;i++){
+						$('#meldingen').append("<li>"+data.Meldingen[i].message+"</li>");
+					}
+					
+					//Geef alle foto's weer
+					//for(var i=0;i<data.Fotos.length;i++){
+						//$('#fotos').append("<img width='150px' src='http://ipmedt4.basbeheertje.nl/showphoto.php?id="+data.Fotos[i].id+"' alt='"+data.Fotos[i].name+"'>");
+					//}
+					$('#fotos').append("<img width='150px' src='http://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ramp_enschede.jpg/264px-Ramp_enschede.jpg' alt='test'/>");
+					
+					//Geef alle reacties weer
+					for(var i=0;i<data.Reacties.length;i++){
+						if(data.Reacties[i].gebruiker == localStorage.getItem("username")){
+							//Voeg eigen reactie toe
+							$('#reacties').append("<li class='ik'><i>Ik</i>: "+data.Reacties[i].reactie+"</li>");
+						}else{
+							//Voeg andere reactie toe
+							$('#reacties').append("<li><i>"+data.Reacties[i].gebruiker+"</i>: "+data.Reacties[i].reactie+"</li>");
+						}
+					}
+					
+				});
+				
+				jQuery("#btn_reactie").click(function(){
+	
+					if(jQuery("#txtReactie").val() != ""){
+				
+						var dataString = "Reactie=" + jQuery("#txtReactie").val() + "&&User=" + localStorage.getItem("username") + "&&Melding=" + gup('id');
+						var url = "http://ipmedt4.basbeheertje.nl/reactie.php?" + dataString;
+						
+						//Verstuur de reactie
+						$.getJSON(url + "&jsoncallback=?", function(data){
+							Succes = data.Succes;
+							
+							if(Succes != ""){
+								//Verberg de popup
+								$("#reactie_popup").css("display", "none");
+							} else {
+								//Geef aan dat de reactie is mislukt
+								jQuery("#td_msg").html("Reactie is mislukt!");
+							}
+	
+						})
+						
+					}else{
+					
+						//Geef een melding omtrent dat niet alle gegevens zijn ingevuld
+						jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
+					
+					}
+	
+					return false;
+	
+				});
+				
+			});
+			
+			function addMarker(positieMarker, titleMarker, url) {
+				
+				//Maak een nieuwe marker aan
+				var marker = new google.maps.Marker({
+					position: positieMarker,
+					map: map,
+					title: titleMarker,
+					url: url
+				});
+	
+			}
+			function changeText(button, vak){
+				//Geef het juiste tekstvak weer
+				$("#vak_melding").css("display", "none");
+				$("#vak_foto").css("display", "none");
+				$("#vak_reactie").css("display", "none");
+				$("#vak_info").css("display", "none");
+				$(vak).css("display", "block");
+				
+				//Kleur de juiste tab
+				$("#button_melding").css("color", "white");
+				$("#button_foto").css("color", "white");
+				$("#button_reactie").css("color", "white");
+				$("#button_info").css("color", "white");
+				$(button).css("color", "black");
+			}
+			function gup( name )
+			{
+			  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			  var regexS = "[\\?&]"+name+"=([^&#]*)";
+			  var regex = new RegExp( regexS );
+			  var results = regex.exec( window.location.href );
+			  if( results == null )
+				return "";
+				//alert("Er zit geen modem in!");
+			  else
+				return results[1];
+				//alert("WTF:"+results[1]);
+			}
+			function Reactie(){
+				//window.location="reactie.html?id="+gup('id');
+				jQuery("#txtReactie").html("");
+				$("#reactie_popup").css("display", "block");
+			}
+			function Foto(){
+				//window.location="foto.html?id="+gup('id');
+				captureImage();
+			}
+			function klikEnTerug(){
+				$("#reactie_popup").css("display", "none");
+			}
+			function captureImage()
+			{
+				navigator.device.capture.captureImage(
+					/**
+					 * Callback that returns the image that was captured
+					 * @param mediaFiles Array with the images that were captured
+					 * during the last capture session
+					 */
+					function(mediaFiles)
+					{
+						var dataString = "FILES=" + mediaFiles[0].fullPath + "&&User=" + localStorage.getItem("username") + "&&Melding=" + gup('id');
+						var url = "http://ipmedt4.basbeheertje.nl/foto.php?" + dataString;
+	
+						$.getJSON(url + "&jsoncallback=?", function(data){
+							Succes = data.Succes;
+							
+							if(Succes != ""){
+								alert("Afbeelding geplaatst");
+							} else {
+								//jQuery("#td_msg").html("Reactie is mislukt!");
+								alert("ojee");
+							}
+	
+						})
+						alert("Upload geslaagd");
+					},
+					function(error)
+					{
+						alert("Error " + error.code);
+					});
+			}
+		</script>
+	</head>
+	<body onload="changeText('#button_melding','#vak_melding')">
+		<div id="reactie_popup">
+			<div id="reactie_popup-background">
+			</div>
+			<div id="reactie_popup-text">
+				<table cellspacing="0" cellpadding="2" border="0" width="100%" align="center">
+					<tbody>
+						<tr>
+							<td style="color:red" id="td_msg">
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<textarea value="" name="txtReactie" id="txtReactie" cols="30" rows="10"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="button" id="btn_reactie" name="btn_reactie" value="Reageren" />
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<a id="close_popup_reactie" href="javascript:klikEnTerug()">
+									Terug
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>		
+		<div id="loader">
+			<div id="loader-background">
+			</div>
+			<div id="loader-text">
+				<img src="images/loading.gif" height="50px"><br/>
+				<div id="loadertext">
+				</div>
+			</div>
+		</div>
+		<div id="melding-top">
+			<a href="main.html">
+				<img src="images/top_article.jpg" height="100%">
+			</a>
+			<h1>
+				Melding
+			</h1>
+		</div>
+		<div id="melding-map"></div>
+		<div id="melding-nav">
+			<div id="melding-buttons">
+				<table width="100%" height="100%">
+					<tr>
+						<td align="center" width="25%" valign="middle">
+							<a id="button_melding" href="javascript:changeText('#button_melding','#vak_melding')">
+								Melding
+							</a>
+						</td>
+						<td align="center" width="25%" valign="middle">
+							<a id="button_foto" href="javascript:changeText('#button_foto','#vak_foto')">
+								Foto's
+							</a>
+						</td>
+						<td align="center" width="25%" valign="middle">
+							<a id="button_reactie" href="javascript:changeText('#button_reactie','#vak_reactie')">
+								Reacties
+							</a>
+						</td>
+						<td align="center" width="25%" valign="middle">
+							<a id="button_info" href="javascript:changeText('#button_info','#vak_info')">
+								Info
+							</a>
+						</td>
+					</td>
+				</table>
+				<div id="vak_melding">
+					<p>
+						<b id="title" class="title"></b>&nbsp;&nbsp;&nbsp;<i id="date" class="date"></i><br/>
+						<br/>
+						<font id="melding" class="melding"></font><br/>
+					</p>
+				</div>
+				<div id="vak_foto">
+					<p onclick="Foto();">Plaats een foto</p>
+					<p id="fotos" class="fotos">
+						
+					</p>
+				</div>
+				<div id="vak_reactie">
+					<p onclick="Reactie();">Geef een reactie</p>
+					<p>
+						<ul class="reacties" id="reacties">
+						</ul>
+					</p>
+				</div>
+				<div id="vak_info">
+					<p>
+						<ul class="meldingen" id="meldingen">
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

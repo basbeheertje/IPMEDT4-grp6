@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+	  	<script src="js/jquery-latest.js"></script>
+	  	<script>
+			  window.addEventListener('load', function(e) {
+				  //Kijken of de app online is
+					if (navigator.onLine) {
+						 //alert('online');
+					} else {
+						window.location="offline.html";
+					}
+					//checkCon();
+				}, false);
+			  $(document).ready(function(){
+					//alle laatste 30 meldingen ophalen
+					$.getJSON('http://ipmedt4.basbeheertje.nl/meldingen.php?'+'&' + "jsoncallback=?", function(data) {
+						for(var i=0;i<data.items.length;i++){
+							$('#reacties_chats').append("<li onclick='VerplaatsNaar("+data.items[i].id+")'><b>"+data.items[i].title+"</b><i>"+data.items[i].date+"</i></li>");
+						}
+						
+					});
+				});
+				function VerplaatsNaar(id){
+					//Gebruiker de melding laten zien
+					window.location="melding.html?id="+id;
+				}
+	  	</script>
+	</head>
+	<body>
+		<header>
+			<div id="latest-top">
+				<a href="main.html">
+					<img src="images/top_article.jpg" height="100%">
+				</a>
+				<h1>
+					Meldingen
+				</h1>
+			</div>
+		</header>
+		<article>
+			<div id="latest">
+				<p>
+					<ul class="reacties_chats" id="reacties_chats">
+					</ul>
+				</p>
+			</div>
+		</article>
+	</body>
+</html>

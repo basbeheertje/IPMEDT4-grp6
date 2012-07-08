@@ -1,0 +1,58 @@
+div#loader-text{text-align:center;-webkit-box-shadow: 0px 0px 40px #8fb4e2;box-shadow: 0px 0px 40px #8fb4e2;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:white;position:absolute;left:50%;margin-left:-100px;top:50%;margin-top:-50px;width:200px;height:100px;display:block;z-index:55;color:black;}
+div#loader-background{top:0px;left:0px;background-color:black; opacity:0.7;display:block;z-index:54;width:100%;height:100%;position:absolute;}
+div#loader{position:absolute;width:100%;height:100%;left:0px;top:0px;display:none;z-index: 53;}
+body, html { margin: 0; width: 100%; height: 100%; font-family: 'Helvetica'}
+body, html { margin: 0; width: 100%; height: 100%; }
+img{border:0px;}
+input{border-radius:3px 3px 3px 3px;width:100%;}
+input#btn, input#btn_reactie{border-radius:3px 3px 3px 3px;background-color:orange;width:100%;}
+#map { z-index:1;width: 100%; height: 55%; top: 15%;position:absolute;display:block;left:0px;}
+a{color:white;text-decoration:none;}
+ul.reacties_chats li{min-width:60%;color:white;margin-bottom:5px;padding:15px;float:left;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:lightgrey;}
+ul.reacties_chats{list-style:none;padding:0px;margin:0px;float:left;}
+ul.reacties li.ik{min-width:60%;margin-bottom:5px;padding:15px;float:left;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:lightgrey;}
+ul.reacties li{min-width:60%;margin-bottom:5px;padding:15px;float:right;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:lightgrey;}
+ul.reacties{list-style:none;padding:0px;margin:0px;float:left;}
+ul.meldingen li{margin-bottom:5px;padding:15px;float:left;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:lightgrey;}
+ul.meldingen{list-style:none;padding:0px;margin:0px;float:left;}
+a#close_popup_reactie{color:orange;text-decoration:none;}
+a#registreren{color:orange;text-decoration:none;}
+div#chats{width:100%;height:80%;display:block;}
+div#chats-help h1, div#chats-top h1, div#latest-top h1{color:white; margin-left: 50%;}
+div#chats-help a, div#chats-top a, div#latest-top a{float:left;}
+div#latest{width:100%;height:80%;display:block;}
+div#brandweer-knop{cursor: pointer;color:white;}
+div#politie-knop{cursor: pointer;color:white;}
+div#ambulance-knop{cursor: pointer;color:white;}
+div#chat-knop{cursor: pointer;color:white;}
+div#register-top{z-index:2;box-shadow: 0 0 40px black;display:block;height:15%;width:100%;top:0px;left:0px;}
+div#help-knop{cursor: pointer;color:white;}
+div#latest-knop{cursor: pointer;color:white;}
+div#main-latest{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:82%;right:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-help{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:91%;right:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-chats{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:73%;right:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-ambulance{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:91%;left:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-politie{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:82%;left:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-brandweer{box-shadow: 0 0 40px black;color:white;position:absolute;display:block;top:73%;left:0px;width:45%;height:7%; background-color:orange;border-radius:15px 15px 15px 15px;}
+div#main-top{z-index:2;box-shadow: 0 0 40px black;display:block;height:15%;width:100%;top:0px;left:0px;position:absolute;}
+div#logon-top{z-index:2;box-shadow: 0 0 40px black;display:block;height:15%;width:100%;top:0px;left:0px;}
+div#latest-top, div#chats-top, div#help-top{margin-bottom:20px;background-color:#418947;z-index:2;box-shadow: 0 0 40px black;overflow:hidden;display:block;height:15%;width:100%;top:0px;left:0px;}
+div#reactie_popup-text{text-align:center;-webkit-box-shadow: 0px 0px 40px #8fb4e2;box-shadow: 0px 0px 40px #8fb4e2;-webkit-border-radius: 15px;-khtml-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;background-color:white;position:absolute;left:5%;top:5%;width:90%;height:90%;display:block;z-index:65;color:black;}
+div#reactie_popup-background{top:0px;left:0px;background-color:black; opacity:0.7;display:block;z-index:64;width:100%;height:100%;position:absolute;}
+div#reactie_popup{position:absolute;width:100%;height:100%;left:0px;top:0px;display:none;z-index: 63;}
+div#intro{position:absolute; width:100%; height:100%; display: block; top: 0px; left:0px;z-index:1;opacity:0;}
+div#app{position:absolute; width:100%; height:100%; display: block; top: 0px; left:0px;z-index:1;opacity:0;}
+div#melding-top{background-color:#418947;z-index:2;box-shadow: 0 0 40px black;display:block;height:15%;width:100%;top:0px;left:0px;position:absolute;}
+div#melding-top a{float:left;}
+div#melding-top h1{color:white; margin-left: 50%;}
+div#melding-nav{position:absolute;display:block;top:50%;left:0px;width:100%;height:50%;z-index:3}
+div#melding-buttons{float:left;box-shadow: 0 0 40px black;display:block;width:100%;height:10%; background-color:orange;border-radius:15px 15px 15px 15px;}
+a#button_foto, a#button_melding, a#button_reactie, a#button_info{color:white;}
+div#vak_melding{width:100%;height:40%;display:none;}
+div#vak_foto{width:100%;height:45%;display:none;}
+div#vak_reactie{width:100%;height:45%;display:none;}
+div#vak_info{width:100%;height:45%;display:none;}
+div#offline-top{margin-bottom:20px;background-color:#418947;z-index:2;box-shadow: 0 0 40px black;overflow:hidden;display:block;height:15%;width:100%;top:0px;left:0px;}
+div#offline-top a{float:left;}
+div#offline-top h1{color:white; margin-left: 50%;}
+#melding-map{z-index:1;width: 100%; height: 30%; top: 15%;position:absolute;display:block;left:0px;}

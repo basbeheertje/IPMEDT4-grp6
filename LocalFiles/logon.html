@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ramptoeristen APP</title>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+		<script src="js/jquery-latest.js"></script>
+		<script>
+			window.addEventListener('load', function(e) {
+				//Kijken of de app online is
+				if (navigator.onLine) {
+					 //alert('online');
+				} else {
+					window.location="offline.html";
+				}
+			}, false);
+			window.addEventListener("offline", function(e) {
+				//is de app offline stuur hem dan door
+				window.location="offline.html";
+				}, false);
+			function checkCookie(){
+				//Haal de gebruiker op en stuur hem door naar de app
+				if (localStorage.getItem("username") != null && localStorage.getItem("username") != "" && localStorage.getItem("name") != "undefined"){
+					window.location = "main.html";
+				}
+			}
+				
+				jQuery(document).ready(function(){
+					
+					//Maak het naam veld leeg
+					jQuery("#txtName").focus(function(){
+						$('#txtName').val('');
+					});
+					
+					//Maak het wachtwoord veld leeg
+					jQuery("#txtPassword").focus(function(){
+						$('#txtPassword').val('');
+					});
+					
+					//Maak het naam veld leeg
+					jQuery("#txtName").click(function(){
+						$('#txtName').val('');
+					});
+					
+					//Maak het wachtwoord veld leeg
+					jQuery("#txtPassword").click(function(){
+						$('#txtPassword').val('');
+					});
+					
+					//Maak het naam veld leeg
+					jQuery("#txtName").select(function(){
+						$('#txtName').val('');
+					});
+					
+					//Maak het wachtwoord veld leeg
+					jQuery("#txtPassword").select(function(){
+						$('#txtPassword').val('');
+					});
+					
+					//Als er wordt ingelogd
+					jQuery("#btn").click(function(){
+						
+						//Kijken of alle velden zijn ingevuld
+						if(jQuery("#txtName").val() != "" && jQuery("#txtPassword").val() != ""){
+							
+							//Geef laadscherm weer
+							jQuery("#loadertext").html("Loading");
+							$("#loader").css("display", "block");
+							
+							//Geef url en data op
+							var dataString = "Name=" + jQuery("#txtName").val() + "&&Password=" + jQuery("#txtPassword").val();
+							var url = "http://ipmedt4.basbeheertje.nl/logon.php?" + dataString;
+							
+							//Haal de response van de server op
+							$.getJSON(url + "&jsoncallback=?", function(data){
+								Succes = data.Succes;
+								Naam = data.Naam;
+								Name = data.Name;
+								
+								//als het allemaal succes is dan de gegevens opslaan
+								if(Succes != "" && Succes != "undefined"){
+									window.localStorage.setItem("username", jQuery("#txtName").val());
+									window.localStorage.setItem("naam", jQuery("#txtNaam").val());
+									window.location = "main.html";
+								} else {
+									//Gegevens bestaan niet
+									jQuery("#td_msg").html("De combinatie tussen gebruikersnaam en wachtwoord komen niet overeen!");
+								}
+		
+							});
+							
+							//Laadscherm verbergen
+							$("#loader").css("display", "none");
+							
+						}else{
+							
+							//Melding geven dat niet alles in orde is
+							jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
+						
+						}
+		
+						return false;
+		
+					});
+				});
+		</script>
+	</head>
+	<body onload="checkCookie();">
+		<header>
+			<div id="logon-top">
+				<img src="images/StartSchermTop.jpg" width="100%" height="100%">
+			</div>
+		</header>
+		<article>
+			<table cellspacing="0" cellpadding="2" border="0" width="100%" align="center">
+				<tbody>
+					<tr>
+						<td style="color:red" id="td_msg">
+						</td>
+					</tr>
+					<tr>
+						<td align="left">
+							<input type="text" name="txtName" id="txtName" value="Gebruikersnaam"/>
+						</td>
+					</tr>
+					<tr>
+						<td align="left">
+							<input type="password" name="txtPassword" id="txtPassword" value="password" />
+						</td>
+					</tr>
+					<tr>
+						<td align="left">
+							<input type="button" id="btn" name="btn" value="Inloggen" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="registration.html" id="registreren" title="Registreren">
+								Registreren
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</body>
+</html>

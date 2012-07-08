@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+		<script src="js/jquery-latest.js"></script>
+	  	<script>
+		  window.addEventListener('load', function(e) {
+				if (navigator.onLine) {
+					 //alert('online');
+				} else {
+					//toon de offline pagina als de gebruiker offline is
+					window.location="offline.html";
+				}
+			}, false);
+			$(document).ready(function(){
+				//Haal alle chats op van de gebruiker
+				$.getJSON('http://ipmedt4.basbeheertje.nl/chats.php?id='+localStorage.getItem("username")+'&' + "jsoncallback=?", function(data) {
+					for(var i=0;i<data.Reacties.length;i++){
+						//voor elke chat toon chat
+						$('#reacties_chats').append("<li onclick='VerplaatsNaar("+data.Reacties[i].nummer+")'><b>"+data.Reacties[i].melding+"</b><br/><i>"+data.Reacties[i].reactie+"</i></li>");
+					}
+					
+				});
+			});
+			function VerplaatsNaar(id){
+				//Open een bepaalde melding
+				window.location="melding.html?id="+id;
+			}
+	  	</script>
+	</head>
+	<body>
+		<!-- Header van de app -->
+		<header>
+			<div id="chats-top">
+				<a href="main.html">
+					<img src="images/top_article.jpg" height="100%">
+				</a>
+				<h1>
+					Chats
+				</h1>
+			</div>
+		</header>
+		<!-- Chats beginnen hier -->
+		<nav>
+			<div id="chats">
+				<p>
+					<ul class="reacties_chats" id="reacties_chats">
+					</ul>
+				</p>
+			</div>
+		</nav>
+	</body>
+</html>

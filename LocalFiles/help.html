@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+	  	<script src="js/jquery-latest.js"></script>
+	  	<script>
+			window.addEventListener('load', function(e) {
+				//Als de app offline is dan wordt er een offline scherm weergegeven
+				if (navigator.onLine) {
+					 //alert('online');
+				} else {
+					window.location="offline.html";
+				}
+			}, false);
+	  	</script>
+	</head>
+	<body>
+		<!-- Header van dit bestand -->
+		<header>
+			<div id="help-top">
+				<a href="main.html">
+					<img src="images/top_article.jpg" height="100%">
+				</a>
+				<h1>
+					Help!
+				</h1>
+			</div>
+		</header>
+		<!-- Help omtrent deze APP -->
+		<article>
+			<table>
+				<tbody>
+					<tr>
+						Deze APP is gemaakt om u als ramptoerist zo snel mogelijk en zo interactief mogelijk te informeren over alle P2000 meldingen die er op dit moment gaande zijn.
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</body>
+</html>

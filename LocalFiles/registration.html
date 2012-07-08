@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="js/jquery-latest.js"></script>
+		<title>Ramptoeristen APP</title>
+	</head>
+	<script>
+		jQuery(document).ready(function(){
+
+			//Maak invoer velden leeg
+			jQuery("#txtNaam").focus(function(){
+				$('#txtNaam').val('');
+			});
+			
+			jQuery("#txtName").focus(function(){
+				$('#txtName').val('');
+			});
+			
+			jQuery("#txtPassword").focus(function(){
+				$('#txtPassword').val('');
+			});
+			
+			jQuery("#btn").click(function(){
+				
+				//Als alles is ingevult
+				if(jQuery("#txtName").val() != "" && jQuery("#txtName").val() != "Gebruikersnaam" && jQuery("#txtPassword").val() != "" && jQuery("#txtPassword").val() != "wachtwoord" && jQuery("#txtNaam").val() != ""){
+			
+					var dataString = "Name=" + jQuery("#txtName").val() + "&&Password=" + jQuery("#txtPassword").val() + "&&Naam=" + jQuery("#txtNaam").val();
+					var url = "http://ipmedt4.basbeheertje.nl/registration.php?" + dataString;
+					
+					//Verstuur gegevens
+					$.getJSON(url + "&jsoncallback=?", function(data){
+						Succes = data.Succes;
+						
+						if(Succes != ""){
+							//Gebruiker is succesvol aangemaakt
+							window.location = "logon.html";
+						} else {
+							//Gebruiker bestond al
+							jQuery("#td_msg").html("De gebruikersnaam is al in gebruik!");
+						}
+
+					})
+					
+				}else{
+					//Connectie mislukt
+					jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
+				
+				}
+
+				return false;
+
+			});
+		});
+	</script>
+	<body>
+		<div id="register-top">
+			<img src="images/StartSchermTop.jpg" width="100%" height="100%">
+		</div>
+		<table cellspacing="0" cellpadding="2" border="0" width="100%" align="center">
+			<tbody>
+				<tr>
+					<td style="color:red" id="td_msg">
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<input type="text" value="Naam" name="txtNaam" id="txtNaam"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<input type="text" value="Gebruikersnaam" name="txtName" id="txtName"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<input value="wachtwoord" type="password" name="txtPassword" id="txtPassword" />
+					</td>
+				</tr>
+				<tr>
+					<td align="left">
+						<input type="button" id="btn" name="btn" value="Registreren" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="logon.html" title="terug naar login">Inlogscherm</a>
+	</body>
+</html>
