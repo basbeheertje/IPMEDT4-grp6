@@ -5,17 +5,17 @@
 	  	<script src="js/jquery-latest.js"></script>
 	  	<script>
 			  window.addEventListener('load', function(e) {
-				  //Kijken of de app online is
+				  // L.G :Kijken of de app online is
 					if (navigator.onLine) {
-						 //alert('online');
+						 // L.G :alert('online');
 					} else {
 						window.location="offline.html";
 					}
-					//checkCon();
+					// L.G :checkCon();
 				}, false);
 			  $(document).ready(function(){
-					//alle laatste 30 meldingen ophalen
-					$.getJSON('http://ipmedt4.basbeheertje.nl/meldingen.php?'+'&' + "jsoncallback=?", function(data) {
+					// L.G :alle laatste 30 meldingen ophalen
+					$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/meldingen.php?'+'&' + "jsoncallback=?", function(data) {
 						for(var i=0;i<data.items.length;i++){
 							$('#reacties_chats').append("<li onclick='VerplaatsNaar("+data.items[i].id+")'><b>"+data.items[i].title+"</b><i>"+data.items[i].date+"</i></li>");
 						}
@@ -23,7 +23,7 @@
 					});
 				});
 				function VerplaatsNaar(id){
-					//Gebruiker de melding laten zien
+					// L.G :Gebruiker de melding laten zien
 					window.location="melding.html?id="+id;
 				}
 	  	</script>

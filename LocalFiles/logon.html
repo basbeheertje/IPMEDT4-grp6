@@ -7,19 +7,19 @@
 		<script src="js/jquery-latest.js"></script>
 		<script>
 			window.addEventListener('load', function(e) {
-				//Kijken of de app online is
+				// L.G :Kijken of de app online is
 				if (navigator.onLine) {
-					 //alert('online');
+					 // L.G :alert('online');
 				} else {
 					window.location="offline.html";
 				}
 			}, false);
 			window.addEventListener("offline", function(e) {
-				//is de app offline stuur hem dan door
+				// L.G :is de app offline stuur hem dan door
 				window.location="offline.html";
 				}, false);
 			function checkCookie(){
-				//Haal de gebruiker op en stuur hem door naar de app
+				// L.G :Haal de gebruiker op en stuur hem door naar de app
 				if (localStorage.getItem("username") != null && localStorage.getItem("username") != "" && localStorage.getItem("name") != "undefined"){
 					window.location = "main.html";
 				}
@@ -27,74 +27,74 @@
 				
 				jQuery(document).ready(function(){
 					
-					//Maak het naam veld leeg
+					// L.G :Maak het naam veld leeg
 					jQuery("#txtName").focus(function(){
 						$('#txtName').val('');
 					});
 					
-					//Maak het wachtwoord veld leeg
+					// L.G :Maak het wachtwoord veld leeg
 					jQuery("#txtPassword").focus(function(){
 						$('#txtPassword').val('');
 					});
 					
-					//Maak het naam veld leeg
+					// L.G :Maak het naam veld leeg
 					jQuery("#txtName").click(function(){
 						$('#txtName').val('');
 					});
 					
-					//Maak het wachtwoord veld leeg
+					// L.G :Maak het wachtwoord veld leeg
 					jQuery("#txtPassword").click(function(){
 						$('#txtPassword').val('');
 					});
 					
-					//Maak het naam veld leeg
+					// L.G :Maak het naam veld leeg
 					jQuery("#txtName").select(function(){
 						$('#txtName').val('');
 					});
 					
-					//Maak het wachtwoord veld leeg
+					// L.G :Maak het wachtwoord veld leeg
 					jQuery("#txtPassword").select(function(){
 						$('#txtPassword').val('');
 					});
 					
-					//Als er wordt ingelogd
+					// L.G :Als er wordt ingelogd
 					jQuery("#btn").click(function(){
 						
-						//Kijken of alle velden zijn ingevuld
+						// L.G :Kijken of alle velden zijn ingevuld
 						if(jQuery("#txtName").val() != "" && jQuery("#txtPassword").val() != ""){
 							
-							//Geef laadscherm weer
+							// L.G :Geef laadscherm weer
 							jQuery("#loadertext").html("Loading");
 							$("#loader").css("display", "block");
 							
-							//Geef url en data op
+							// L.G :Geef url en data op
 							var dataString = "Name=" + jQuery("#txtName").val() + "&&Password=" + jQuery("#txtPassword").val();
-							var url = "http://ipmedt4.basbeheertje.nl/logon.php?" + dataString;
+							var url = "http:// L.G :ipmedt4.basbeheertje.nl/logon.php?" + dataString;
 							
-							//Haal de response van de server op
+							// L.G :Haal de response van de server op
 							$.getJSON(url + "&jsoncallback=?", function(data){
 								Succes = data.Succes;
 								Naam = data.Naam;
 								Name = data.Name;
 								
-								//als het allemaal succes is dan de gegevens opslaan
+								// L.G :als het allemaal succes is dan de gegevens opslaan
 								if(Succes != "" && Succes != "undefined"){
 									window.localStorage.setItem("username", jQuery("#txtName").val());
 									window.localStorage.setItem("naam", jQuery("#txtNaam").val());
 									window.location = "main.html";
 								} else {
-									//Gegevens bestaan niet
+									// L.G :Gegevens bestaan niet
 									jQuery("#td_msg").html("De combinatie tussen gebruikersnaam en wachtwoord komen niet overeen!");
 								}
 		
 							});
 							
-							//Laadscherm verbergen
+							// L.G :Laadscherm verbergen
 							$("#loader").css("display", "none");
 							
 						}else{
 							
-							//Melding geven dat niet alles in orde is
+							// L.G :Melding geven dat niet alles in orde is
 							jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
 						
 						}

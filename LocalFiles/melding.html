@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="http:// L.G :maps.google.com/maps/api/js?sensor=true"></script>
 		<script src="js/jquery-latest.js"></script>
 		<script src="js/wormhole.js"></script>
 		<script>
@@ -11,7 +11,7 @@
 				jQuery("#loadertext").html("Connecting");
 				$("#loader").css("display", "block");
 				
-				var url = "http://ipmedt4.basbeheertje.nl/connection.php";
+				var url = "http:// L.G :ipmedt4.basbeheertje.nl/connection.php";
 	
 				$.getJSON(url + "?jsoncallback=?", function(data){
 					Succes = data.Succes;
@@ -21,28 +21,28 @@
 			}
 			window.addEventListener('load', function(e) {
 				if (navigator.onLine) {
-					 //alert('online');
+					 // L.G :alert('online');
 				} else {
 					window.location="offline.html";
 				}
-				//checkCon();
+				// L.G :checkCon();
 			}, false);
 			window.addEventListener("offline", function(e) {
-				//APP is offline
+				// L.G :APP is offline
 				window.location="offline.html";
 				}, false);
 			function checkCookie(){
 				if (localStorage.getItem("username") != null && localStorage.getItem("username") != "" && localStorage.getItem("name") != "undefined"){
-					//Gebruiker bestaat
+					// L.G :Gebruiker bestaat
 				}else{
-					//Gebruiker bestaat niet
+					// L.G :Gebruiker bestaat niet
 					window.location = "logon.html";
 				}
 			}
 			$(document).ready(function(){
-				//Haal gegevens van de server op
-				$.getJSON('http://ipmedt4.basbeheertje.nl/melding.php?id='+gup('id')+'&' + "jsoncallback=?", function(data) {
-					//Maak een map aan
+				// L.G :Haal gegevens van de server op
+				$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/melding.php?id='+gup('id')+'&' + "jsoncallback=?", function(data) {
+					// L.G :Maak een map aan
 					var centerMap = new google.maps.LatLng(data.latitude, data.longitutde);
 					var optionMap = {
 						center: centerMap,
@@ -58,26 +58,26 @@
 					$('#title').append(data.title);
 					$('#date').append(data.date);
 					
-					//Haal JSON objecten op van de server			
+					// L.G :Haal JSON objecten op van de server			
 					
-					//Geef alle meldingen weer
+					// L.G :Geef alle meldingen weer
 					for(var i=0;i<data.Meldingen.length;i++){
 						$('#meldingen').append("<li>"+data.Meldingen[i].message+"</li>");
 					}
 					
-					//Geef alle foto's weer
-					//for(var i=0;i<data.Fotos.length;i++){
-						//$('#fotos').append("<img width='150px' src='http://ipmedt4.basbeheertje.nl/showphoto.php?id="+data.Fotos[i].id+"' alt='"+data.Fotos[i].name+"'>");
-					//}
-					$('#fotos').append("<img width='150px' src='http://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ramp_enschede.jpg/264px-Ramp_enschede.jpg' alt='test'/>");
+					// L.G :Geef alle foto's weer
+					// L.G :for(var i=0;i<data.Fotos.length;i++){
+						// L.G :$('#fotos').append("<img width='150px' src='http:// L.G :ipmedt4.basbeheertje.nl/showphoto.php?id="+data.Fotos[i].id+"' alt='"+data.Fotos[i].name+"'>");
+					// L.G :}
+					$('#fotos').append("<img width='150px' src='http:// L.G :upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Ramp_enschede.jpg/264px-Ramp_enschede.jpg' alt='test'/>");
 					
-					//Geef alle reacties weer
+					// L.G :Geef alle reacties weer
 					for(var i=0;i<data.Reacties.length;i++){
 						if(data.Reacties[i].gebruiker == localStorage.getItem("username")){
-							//Voeg eigen reactie toe
+							// L.G :Voeg eigen reactie toe
 							$('#reacties').append("<li class='ik'><i>Ik</i>: "+data.Reacties[i].reactie+"</li>");
 						}else{
-							//Voeg andere reactie toe
+							// L.G :Voeg andere reactie toe
 							$('#reacties').append("<li><i>"+data.Reacties[i].gebruiker+"</i>: "+data.Reacties[i].reactie+"</li>");
 						}
 					}
@@ -89,17 +89,17 @@
 					if(jQuery("#txtReactie").val() != ""){
 				
 						var dataString = "Reactie=" + jQuery("#txtReactie").val() + "&&User=" + localStorage.getItem("username") + "&&Melding=" + gup('id');
-						var url = "http://ipmedt4.basbeheertje.nl/reactie.php?" + dataString;
+						var url = "http:// L.G :ipmedt4.basbeheertje.nl/reactie.php?" + dataString;
 						
-						//Verstuur de reactie
+						// L.G :Verstuur de reactie
 						$.getJSON(url + "&jsoncallback=?", function(data){
 							Succes = data.Succes;
 							
 							if(Succes != ""){
-								//Verberg de popup
+								// L.G :Verberg de popup
 								$("#reactie_popup").css("display", "none");
 							} else {
-								//Geef aan dat de reactie is mislukt
+								// L.G :Geef aan dat de reactie is mislukt
 								jQuery("#td_msg").html("Reactie is mislukt!");
 							}
 	
@@ -107,7 +107,7 @@
 						
 					}else{
 					
-						//Geef een melding omtrent dat niet alle gegevens zijn ingevuld
+						// L.G :Geef een melding omtrent dat niet alle gegevens zijn ingevuld
 						jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
 					
 					}
@@ -120,7 +120,7 @@
 			
 			function addMarker(positieMarker, titleMarker, url) {
 				
-				//Maak een nieuwe marker aan
+				// L.G :Maak een nieuwe marker aan
 				var marker = new google.maps.Marker({
 					position: positieMarker,
 					map: map,
@@ -130,14 +130,14 @@
 	
 			}
 			function changeText(button, vak){
-				//Geef het juiste tekstvak weer
+				// L.G :Geef het juiste tekstvak weer
 				$("#vak_melding").css("display", "none");
 				$("#vak_foto").css("display", "none");
 				$("#vak_reactie").css("display", "none");
 				$("#vak_info").css("display", "none");
 				$(vak).css("display", "block");
 				
-				//Kleur de juiste tab
+				// L.G :Kleur de juiste tab
 				$("#button_melding").css("color", "white");
 				$("#button_foto").css("color", "white");
 				$("#button_reactie").css("color", "white");
@@ -152,18 +152,18 @@
 			  var results = regex.exec( window.location.href );
 			  if( results == null )
 				return "";
-				//alert("Er zit geen modem in!");
+				// L.G :alert("Er zit geen modem in!");
 			  else
 				return results[1];
-				//alert("WTF:"+results[1]);
+				// L.G :alert("WTF:"+results[1]);
 			}
 			function Reactie(){
-				//window.location="reactie.html?id="+gup('id');
+				// L.G :window.location="reactie.html?id="+gup('id');
 				jQuery("#txtReactie").html("");
 				$("#reactie_popup").css("display", "block");
 			}
 			function Foto(){
-				//window.location="foto.html?id="+gup('id');
+				// L.G :window.location="foto.html?id="+gup('id');
 				captureImage();
 			}
 			function klikEnTerug(){
@@ -180,7 +180,7 @@
 					function(mediaFiles)
 					{
 						var dataString = "FILES=" + mediaFiles[0].fullPath + "&&User=" + localStorage.getItem("username") + "&&Melding=" + gup('id');
-						var url = "http://ipmedt4.basbeheertje.nl/foto.php?" + dataString;
+						var url = "http:// L.G :ipmedt4.basbeheertje.nl/foto.php?" + dataString;
 	
 						$.getJSON(url + "&jsoncallback=?", function(data){
 							Succes = data.Succes;
@@ -188,7 +188,7 @@
 							if(Succes != ""){
 								alert("Afbeelding geplaatst");
 							} else {
-								//jQuery("#td_msg").html("Reactie is mislukt!");
+								// L.G :jQuery("#td_msg").html("Reactie is mislukt!");
 								alert("ojee");
 							}
 	

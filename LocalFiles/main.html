@@ -2,42 +2,42 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="http:// L.G :maps.google.com/maps/api/js?sensor=true"></script>
 		<script src="js/jquery-latest.js"></script>
 		<script>
 			var map;
 			window.addEventListener('load', function(e) {
 				if (navigator.onLine) {
-					 //alert('online');
+					 // L.G :alert('online');
 				} else {
 					window.location="offline.html";
 				}
 			}, false);
 			window.addEventListener("offline", function(e) {
-				//APP is offline laad dit zien
+				// L.G :APP is offline laad dit zien
 				window.location="offline.html";
 				}, false);
 			function checkCookie(){
 				if (localStorage.getItem("username") != null && localStorage.getItem("username") != "" && localStorage.getItem("name") != "undefined"){
-					//window.location = "main.html";
+					// L.G :window.location = "main.html";
 				}else{
-					//Ga terug naar logon
+					// L.G :Ga terug naar logon
 					window.location = "logon.html";
 				}
 			}
 			jQuery(document).ajaxError(function(event, request, settings){
-				//Bij een fout toon het volgende
+				// L.G :Bij een fout toon het volgende
 				alert("Error");
 				setTimeout('window.location="logon.html";', 10000);
 			});
 			
 			$(document).ready(function(){
 				
-				//Geef laadscherm weer
+				// L.G :Geef laadscherm weer
 				jQuery("#loadertext").html("Loading");
 				$("#loader").css("display", "block");
 				
-				//Maak een map aan
+				// L.G :Maak een map aan
 				var centerMap = new google.maps.LatLng(52.18958, 5.29524);
 				var optionMap = {
 					center: centerMap,
@@ -46,11 +46,11 @@
 				};
 				map = new google.maps.Map(document.getElementById('map'), optionMap);
 				
-				//Haal JSON objecten op van de server			
-				$.getJSON('http://ipmedt4.basbeheertje.nl/meldingen.php?' + "jsoncallback=?", function(data) {
+				// L.G :Haal JSON objecten op van de server			
+				$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/meldingen.php?' + "jsoncallback=?", function(data) {
 					for(var i=0;i<data.items.length;i++)
 					{
-						//Maak een marker aan
+						// L.G :Maak een marker aan
 						var positie = new google.maps.LatLng(data.items[i].latitude, data.items[i].longitutde);
 						var url = "melding.html?id="+data.items[i].id;
 						addMarker(positie, data.items[i].title, url);
@@ -58,7 +58,7 @@
 				});
 				
 				jQuery("#brandweer-knop").click(function(){
-					//Maak een map aan
+					// L.G :Maak een map aan
 					var centerMap = new google.maps.LatLng(52.18958, 5.29524);
 					var optionMap = {
 						center: centerMap,
@@ -67,11 +67,11 @@
 					};
 					map = new google.maps.Map(document.getElementById('map'), optionMap);
 					
-					//Haal JSON objecten op van de server			
-					$.getJSON('http://ipmedt4.basbeheertje.nl/brandweer.php?' + "jsoncallback=?", function(data) {
+					// L.G :Haal JSON objecten op van de server			
+					$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/brandweer.php?' + "jsoncallback=?", function(data) {
 						for(var i=0;i<data.items.length;i++)
 						{
-							//Maak een marker aan
+							// L.G :Maak een marker aan
 							var positie = new google.maps.LatLng(data.items[i].latitude, data.items[i].longitutde);
 							var url = "melding.html?id="+data.items[i].id;
 							addMarker(positie, data.items[i].title, url);
@@ -80,7 +80,7 @@
 				});
 				
 				jQuery("#ambulance-knop").click(function(){
-					//Maak een map aan
+					// L.G :Maak een map aan
 					var centerMap = new google.maps.LatLng(52.18958, 5.29524);
 					var optionMap = {
 						center: centerMap,
@@ -89,11 +89,11 @@
 					};
 					map = new google.maps.Map(document.getElementById('map'), optionMap);
 					
-					//Haal JSON objecten op van de server			
-					$.getJSON('http://ipmedt4.basbeheertje.nl/ambulance.php?' + "jsoncallback=?", function(data) {
+					// L.G :Haal JSON objecten op van de server			
+					$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/ambulance.php?' + "jsoncallback=?", function(data) {
 						for(var i=0;i<data.items.length;i++)
 						{
-							//Maak een marker aan
+							// L.G :Maak een marker aan
 							var positie = new google.maps.LatLng(data.items[i].latitude, data.items[i].longitutde);
 							var url = "melding.html?id="+data.items[i].id;
 							addMarker(positie, data.items[i].title, url);
@@ -102,7 +102,7 @@
 				});
 				
 				jQuery("#politie-knop").click(function(){
-					//Maak een map aan
+					// L.G :Maak een map aan
 					var centerMap = new google.maps.LatLng(52.18958, 5.29524);
 					var optionMap = {
 						center: centerMap,
@@ -111,11 +111,11 @@
 					};
 					map = new google.maps.Map(document.getElementById('map'), optionMap);
 					
-					//Haal JSON objecten op van de server			
-					$.getJSON('http://ipmedt4.basbeheertje.nl/politie.php?' + "jsoncallback=?", function(data) {
+					// L.G :Haal JSON objecten op van de server			
+					$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/politie.php?' + "jsoncallback=?", function(data) {
 						for(var i=0;i<data.items.length;i++)
 						{
-							//Maak een marker aan
+							// L.G :Maak een marker aan
 							var positie = new google.maps.LatLng(data.items[i].latitude, data.items[i].longitutde);
 							var url = "melding.html?id="+data.items[i].id;
 							addMarker(positie, data.items[i].title, url);
@@ -124,27 +124,27 @@
 				});
 				
 				jQuery("#chat-knop").click(function(){
-					//redirect naar de chats
+					// L.G :redirect naar de chats
 					window.location="chats.html";
 				});
 				
 				jQuery("#latest-knop").click(function(){
-					//redirect naar de laatste meldingen
+					// L.G :redirect naar de laatste meldingen
 					window.location="latest.html";
 				});
 				
 				jQuery("#help-knop").click(function(){
-					//Redirect naar het help scherm
+					// L.G :Redirect naar het help scherm
 					window.location="help.html";
 				});
 				
-				//Verberg het laadscherm
+				// L.G :Verberg het laadscherm
 				$("#loader").css("display", "none");
 				
 			});
 			function addMarker(positieMarker, titleMarker, url) {
 				
-				//Maak een nieuwe marker aan
+				// L.G :Maak een nieuwe marker aan
 				var marker = new google.maps.Marker({
 					position: positieMarker,
 					map: map,
@@ -153,7 +153,7 @@
 				});
 				
 				google.maps.event.addListener(marker, 'click', function() {
-					//maak een link aan voor de marker op de google map
+					// L.G :maak een link aan voor de marker op de google map
 					window.location.href = this.url;
 				});
 	
@@ -174,6 +174,7 @@
 			</div>
 		</header>
 		<div id="map"></div> 
+		<!--  brandweer knop -->
 		<div id="main-brandweer">
 			<table width="100%" height="100%">
 				<tr>
@@ -183,6 +184,8 @@
 				</td>
 			</table>
 		</div>
+		<!--  eind brandweer knop -->
+		<!-- Politie knop -->
 		<div id="main-politie">
 			<table width="100%" height="100%">
 				<tr>
@@ -192,6 +195,8 @@
 				</td>
 			</table>
 		</div>
+		<!-- Eind politieknop -->
+			<!-- Ambulanceknop -->
 		<div id="main-ambulance">
 			<table width="100%" height="100%">
 				<tr>
@@ -201,6 +206,8 @@
 				</td>
 			</table>
 		</div>
+		<!-- Eind ambulanceknop -->
+		<!--  chatknop -->
 		<div id="main-chats">
 			<table width="100%" height="100%">
 				<tr>
@@ -210,6 +217,8 @@
 				</td>
 			</table>
 		</div>
+		<!--  eind chatknop -->
+		<!--  latest-knop -->
 		<div id="main-latest">
 			<table width="100%" height="100%">
 				<tr>
@@ -219,6 +228,8 @@
 				</td>
 			</table>
 		</div>
+		<!-- eind latest knop -->
+		<!--  helpknop -->
 		<div id="main-help">
 			<table width="100%" height="100%">
 				<tr>
@@ -228,5 +239,6 @@
 				</td>
 			</table>
 		</div>
+		<!--  eind helpknop -->
 	</body>
 </html>

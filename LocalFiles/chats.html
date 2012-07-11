@@ -6,24 +6,24 @@
 	  	<script>
 		  window.addEventListener('load', function(e) {
 				if (navigator.onLine) {
-					 //alert('online');
+					 // L.G :alert('online');
 				} else {
-					//toon de offline pagina als de gebruiker offline is
+					// L.G :toon de offline pagina als de gebruiker offline is
 					window.location="offline.html";
 				}
 			}, false);
 			$(document).ready(function(){
-				//Haal alle chats op van de gebruiker
-				$.getJSON('http://ipmedt4.basbeheertje.nl/chats.php?id='+localStorage.getItem("username")+'&' + "jsoncallback=?", function(data) {
+				// L.G :Haal alle chats op van de gebruiker
+				$.getJSON('http:// L.G :ipmedt4.basbeheertje.nl/chats.php?id='+localStorage.getItem("username")+'&' + "jsoncallback=?", function(data) {
 					for(var i=0;i<data.Reacties.length;i++){
-						//voor elke chat toon chat
+						// L.G :voor elke chat toon chat
 						$('#reacties_chats').append("<li onclick='VerplaatsNaar("+data.Reacties[i].nummer+")'><b>"+data.Reacties[i].melding+"</b><br/><i>"+data.Reacties[i].reactie+"</i></li>");
 					}
 					
 				});
 			});
 			function VerplaatsNaar(id){
-				//Open een bepaalde melding
+				// L.G :Open een bepaalde melding
 				window.location="melding.html?id="+id;
 			}
 	  	</script>

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-// L.G :W3C// L.G :DTD XHTML 1.0 Transitional// L.G :EN" "http:// L.G :www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http:// L.G :www.w3.org/1999/xhtml">
 	<head>
 		<link rel="stylesheet" href="style.css" TYPE="text/css" MEDIA="screen">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,7 +9,7 @@
 	<script>
 		jQuery(document).ready(function(){
 
-			//Maak invoer velden leeg
+			// L.G :Maak invoer velden leeg
 			jQuery("#txtNaam").focus(function(){
 				$('#txtNaam').val('');
 			});
@@ -24,28 +24,28 @@
 			
 			jQuery("#btn").click(function(){
 				
-				//Als alles is ingevult
+				// L.G :Als alles is ingevult
 				if(jQuery("#txtName").val() != "" && jQuery("#txtName").val() != "Gebruikersnaam" && jQuery("#txtPassword").val() != "" && jQuery("#txtPassword").val() != "wachtwoord" && jQuery("#txtNaam").val() != ""){
 			
 					var dataString = "Name=" + jQuery("#txtName").val() + "&&Password=" + jQuery("#txtPassword").val() + "&&Naam=" + jQuery("#txtNaam").val();
-					var url = "http://ipmedt4.basbeheertje.nl/registration.php?" + dataString;
+					var url = "http:// L.G :ipmedt4.basbeheertje.nl/registration.php?" + dataString;
 					
-					//Verstuur gegevens
+					// L.G :Verstuur gegevens
 					$.getJSON(url + "&jsoncallback=?", function(data){
 						Succes = data.Succes;
 						
 						if(Succes != ""){
-							//Gebruiker is succesvol aangemaakt
+							// L.G :Gebruiker is succesvol aangemaakt
 							window.location = "logon.html";
 						} else {
-							//Gebruiker bestond al
+							// L.G :Gebruiker bestond al
 							jQuery("#td_msg").html("De gebruikersnaam is al in gebruik!");
 						}
 
 					})
 					
 				}else{
-					//Connectie mislukt
+					// L.G :Connectie mislukt
 					jQuery("#td_msg").html("U heeft niet alle velden ingevuld!");
 				
 				}
